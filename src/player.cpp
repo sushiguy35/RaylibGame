@@ -1,4 +1,6 @@
-// player.cpp
-#include "headers/player.hpp"
+#include "raylib.h"
 
-P player;  // Define player object
+class Player {
+    public:
+    int x, y;
+};
