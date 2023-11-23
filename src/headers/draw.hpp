@@ -1,10 +1,10 @@
 #include "raylib.h"
-#include "player.hpp"
+#include "../player.cpp"
 
 class Draw {
-  public:
-  void player()
-  {
-    DrawRectangle(player.x, player.y, 10, 10, BlACK);
-  }
+public:
+    void player(const P& player)
+    {
+        DrawRectangle(player.x, player.y, 100, 100, BLACK);
+    }
 };

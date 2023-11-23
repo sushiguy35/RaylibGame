@@ -1,10 +1,7 @@
-#include "raylib.h"
-#include "headers/window.hpp"
-#include "headers/player.hpp"
+#include "window.cpp"
 
-int main(void)
+int main()
 {
   window.init();
-
   return 0;
 }

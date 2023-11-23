@@ -1,12 +1,10 @@
-class Player {
-  public:
+// player.hpp
+#pragma once
 
-  float x, y;
-
-  void init()
-  {
-    
-  }
+class P {
+public:
+    float x, y;
 };
 
-Player player;
+extern P player;  // Declare player object
+

@@ -1,20 +1,20 @@
 #include "raylib.h"
+#include "../draw.cpp"
 
 class Window {
-  public:
-  void init()
-  {
-    InitWindow(800, 450, "raylib [core] example - basic window");
-
-    while (!WindowShouldClose())
+public:
+    void init()
     {
-        BeginDrawing();
+        InitWindow(800, 450, "raylib [core] example - basic window");
+
+        while (!WindowShouldClose())
+        {
+            BeginDrawing();
             ClearBackground(RAYWHITE);
-        EndDrawing();
+            draw.player(player);  // Pass the player object to the draw function
+            EndDrawing();
+        }
+
+        CloseWindow();
     }
-
-    CloseWindow();
-  }
 };
-
-Window window;
