@@ -1,14 +1,35 @@
 #include "raylib.h"
-#include "player.c"
 #include <stdio.h>
+#include "headers/player.h"
+#include "headers/levels.h"
+#include "headers/shooting.h"
+#include "headers/enemie.h"
 
-#define SCREENHEIGHT 500
-#define SCREENWIDTH 1000
+
+#define SCREENHEIGHT 450
+#define SCREENWIDTH 800
+
+unsigned int level = 0;
 
 int main()
 {
 	InitWindow(SCREENWIDTH, SCREENHEIGHT, "Game");
 	SetTargetFPS(60);
+
+	player.x = 100;
+	player.y = 100;
+	player.width = 25;
+	player.height = 25;
+
+	player.rec.x = 100;
+	player.rec.y = 225;
+	player.rec.width = 25;
+	player.rec.height = 35;
+
+	
+	
+	// Draw first level on startup
+	DrawLevelOne(SCREENHEIGHT, player.rec);
 
 	while(!WindowShouldClose())
 	{
@@ -29,11 +50,33 @@ int main()
 		{
 			player.y += 2;
 		}
+		if (IsKeyDown(KEY_SPACE))
+		{
+			shoot();
+		}
 
 		BeginDrawing();
 			ClearBackground(RAYWHITE);
+			if (level == 0)
+			{
+				DrawLevelZero(SCREENHEIGHT);
+				
+				if (player.x >= 800)
+				{
+					printf("NEW LEVEL\n");
+					player.x = 0;
+					level = 1;
+				}	
+			} else if (level == 1)
+			{
+				DrawLevelOne();
+			}
+			
 			// Draw Player
 			DrawRectangle(player.x, player.y, player.width, player.height, RED);
+
+			
+
 		EndDrawing();
 	}
 	

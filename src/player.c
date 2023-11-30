@@ -1,3 +1,4 @@
-#include "player.h"
+#include "./headers/player.h"
 
-Player player = {100, 30, 25, 25};
+Player player;
+
