@@ -1,10 +1,6 @@
-CC = gcc
-MF = src/main.c
-LIB = -lraylib -lm
-O = main
-
 compile:
-	$(CC) $(MF) -o $(O) $(LIB)
-
+	gcc src/main.c -lraylib -lm -o main.exe
+	make run
+	
 run:
-	./main
+	./main.exe

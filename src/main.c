@@ -1,33 +1,41 @@
 #include "raylib.h"
+#include "player.c"
+#include <stdio.h>
 
-int px, py;
-int pw, ph;
-int wh, ww;
-int ps;
+#define SCREENHEIGHT 500
+#define SCREENWIDTH 1000
 
-int main(int argc, char** argv)
+int main()
 {
-	wh = 512;
-	ww = 1024;
+	InitWindow(SCREENWIDTH, SCREENHEIGHT, "Game");
+	SetTargetFPS(60);
 
-	ps = 1;
-
-	pw = 25;
-	ph = 50;
-
-	InitWindow(ww, wh, "GAME!!");
-
-	while (!WindowShouldClose())
+	while(!WindowShouldClose())
 	{
-		// Input
-		if (IsKeyDown(KEY_RIGHT)) { px += 1;  }
-		if (IsKeyDown(KEY_LEFT))  { px -= 1; }
-	
-		// Draw
+		// Move Player
+		if (IsKeyDown(KEY_RIGHT))
+		{
+			player.x += 2;
+		} 
+		if (IsKeyDown(KEY_LEFT))
+		{
+			player.x -= 2;
+		}
+		if (IsKeyDown(KEY_UP))
+		{
+			player.y -= 2;
+		}
+		if (IsKeyDown(KEY_DOWN))
+		{
+			player.y += 2;
+		}
+
 		BeginDrawing();
 			ClearBackground(RAYWHITE);
-			DrawRectangle(px, py, pw, ph, RED);
+			// Draw Player
+			DrawRectangle(player.x, player.y, player.width, player.height, RED);
 		EndDrawing();
-
 	}
+	
+	CloseWindow();
 }
