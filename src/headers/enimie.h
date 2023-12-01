@@ -4,5 +4,5 @@ typedef struct Enimie {
     int direction;
 } Enimie;
 
-#define MAX_ENIMIES 2
+#define MAX_ENIMIES 1000
 extern Enimie enimies[MAX_ENIMIES];

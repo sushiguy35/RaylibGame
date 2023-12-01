@@ -3,6 +3,52 @@
 #include "../player.c"
 #include "enimie.c"
 
+
+void DrawTemplate()
+{
+	// top left wall
+	DrawRectangle(0, 0, 25, 175, GREEN);
+	// bottom left wall
+	DrawRectangle(0, 275, 25, 175, GREEN);
+	// top wall
+	DrawRectangle(0, 0, 800, 25, GREEN);
+	// bottom right wall
+	DrawRectangle(775, 275, 25, 175, GREEN);
+	// Top right wall
+	DrawRectangle(775, 0, 25, 175, GREEN);
+	// bottom wall
+	DrawRectangle(0, 425, 800, 25, GREEN);
+	
+
+	// Collisions
+	if (player.y <= 25)
+	{	
+    	player.y = 25;
+    	printf("Collided with top wall\n");
+	} else if (player.y >= 400)
+	{
+		player.y = 400;
+		printf("Collided with bottom wall\n");
+	} else if (player.x <= 25 && player.y <= 175)
+	{
+		player.x = 25;
+		printf("Collided with top left wall\n");
+	} else if (player.x <= 25 && player.y >= 250)
+	{
+		player.x = 25;
+		printf("Collided with bottom left wall\n");
+	} else if (player.x >= 750 && player.y <= 175)
+	{
+		player.x = 750;
+		printf("Collided with top right wall\n");
+	} else if (player.x >= 750 && player.y >= 250)
+	{
+		player.x = 750;
+		printf("Collided with bottom right wall\n");
+	}
+}
+
+
 void DrawLevelZero(int screenheight)
 {
 	// Draw Help
@@ -54,21 +100,10 @@ void DrawLevelZero(int screenheight)
 
 void DrawLevelOne()
 {
-	// top left wall
-	DrawRectangle(0, 0, 25, 175, GREEN);
-	// bottom left wall
-	DrawRectangle(0, 275, 25, 175, GREEN);
-	// top wall
-	DrawRectangle(0, 0, 800, 25, GREEN);
-	// bottom right wall
-	DrawRectangle(775, 275, 25, 175, GREEN);
-	// Top right wall
-	DrawRectangle(775, 0, 25, 175, GREEN);
-	// bottom wall
-	DrawRectangle(0, 425, 800, 25, GREEN);
+	DrawTemplate();
 	
-	CreateEnimie(0, 300, 100); // For the first enemy
-	CreateEnimie(1, 500, 300); // For the second enemy
+	CreateEnimie(0, 300, 100, 10); // For the first enemy
+	CreateEnimie(1, 500, 300, 10); // For the second enemy
 	
 
 	// PLAYER DEATH
@@ -81,53 +116,17 @@ void DrawLevelOne()
         	died();
         	return;
     	}
-	}
-
-	// Collisions
-	if (player.y <= 25)
-	{	
-    	player.y = 25;
-    	printf("Collided with top wall\n");
-	} else if (player.y >= 400)
-	{
-		player.y = 400;
-		printf("Collided with bottom wall\n");
-	} else if (player.x <= 25 && player.y <= 175)
-	{
-		player.x = 25;
-		printf("Collided with top left wall\n");
-	} else if (player.x <= 25 && player.y >= 250)
-	{
-		player.x = 25;
-		printf("Collided with bottom left wall\n");
-	} else if (player.x >= 750 && player.y <= 175)
-	{
-		player.x = 750;
-		printf("Collided with top right wall\n");
-	} else if (player.x >= 750 && player.y >= 250)
-	{
-		player.x = 750;
-		printf("Collided with bottom right wall\n");
 	}
 }
 
 void DrawLevelTwo()
 {
-	// top left wall
-	DrawRectangle(0, 0, 25, 175, GREEN);
-	// bottom left wall
-	DrawRectangle(0, 275, 25, 175, GREEN);
-	// top wall
-	DrawRectangle(0, 0, 800, 25, GREEN);
-	// bottom right wall
-	DrawRectangle(775, 275, 25, 175, GREEN);
-	// Top right wall
-	DrawRectangle(775, 0, 25, 175, GREEN);
-	// bottom wall
-	DrawRectangle(0, 425, 800, 25, GREEN);
+	DrawTemplate();
 	
-	CreateEnimie(0, 300, 100); // For the first enemy
-	CreateEnimie(1, 500, 300); // For the second enemy
+	CreateEnimie(1, 100, 100, 12); // For the first enemy
+	CreateEnimie(2, 200, 200, 13); // For the second enemy
+	CreateEnimie(3, 300, 300, 14); // For the Third enemy
+
 	
 
 	// PLAYER DEATH
@@ -140,54 +139,15 @@ void DrawLevelTwo()
         	died();
         	return;
     	}
-	}
-
-	// Collisions
-	if (player.y <= 25)
-	{	
-    	player.y = 25;
-    	printf("Collided with top wall\n");
-	} else if (player.y >= 400)
-	{
-		player.y = 400;
-		printf("Collided with bottom wall\n");
-	} else if (player.x <= 25 && player.y <= 175)
-	{
-		player.x = 25;
-		printf("Collided with top left wall\n");
-	} else if (player.x <= 25 && player.y >= 250)
-	{
-		player.x = 25;
-		printf("Collided with bottom left wall\n");
-	} else if (player.x >= 750 && player.y <= 175)
-	{
-		player.x = 750;
-		printf("Collided with top right wall\n");
-	} else if (player.x >= 750 && player.y >= 250)
-	{
-		player.x = 750;
-		printf("Collided with bottom right wall\n");
 	}
 }
 
 void DrawLevelThree()
 {
-	// top left wall
-	DrawRectangle(0, 0, 25, 175, GREEN);
-	// bottom left wall
-	DrawRectangle(0, 275, 25, 175, GREEN);
-	// top wall
-	DrawRectangle(0, 0, 800, 25, GREEN);
-	// bottom right wall
-	DrawRectangle(775, 275, 25, 175, GREEN);
-	// Top right wall
-	DrawRectangle(775, 0, 25, 175, GREEN);
-	// bottom wall
-	DrawRectangle(0, 425, 800, 25, GREEN);
+	DrawTemplate();
 	
-	CreateEnimie(0, 300, 100); // For the first enemy
-	CreateEnimie(1, 500, 300); // For the second enemy
-	
+	CreateEnimie(0, 300, 100, 40); // For the first enemy
+	CreateEnimie(1, 500, 300, 40); // For the second enemy
 
 	// PLAYER DEATH
 	Rectangle playerRec = {player.x, player.y, player.width, player.height};
@@ -201,30 +161,10 @@ void DrawLevelThree()
     	}
 	}
 
-	// Collisions
-	if (player.y <= 25)
-	{	
-    	player.y = 25;
-    	printf("Collided with top wall\n");
-	} else if (player.y >= 400)
+	DrawRectangle(100, 215, 25, 100, RED);
+
+	if (CheckCollisionRecs(playerRec, (Rectangle){100, 215, 25, 100}))
 	{
-		player.y = 400;
-		printf("Collided with bottom wall\n");
-	} else if (player.x <= 25 && player.y <= 175)
-	{
-		player.x = 25;
-		printf("Collided with top left wall\n");
-	} else if (player.x <= 25 && player.y >= 250)
-	{
-		player.x = 25;
-		printf("Collided with bottom left wall\n");
-	} else if (player.x >= 750 && player.y <= 175)
-	{
-		player.x = 750;
-		printf("Collided with top right wall\n");
-	} else if (player.x >= 750 && player.y >= 250)
-	{
-		player.x = 750;
-		printf("Collided with bottom right wall\n");
+		died();
 	}
 }

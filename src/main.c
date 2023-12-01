@@ -16,6 +16,8 @@ int main()
 	InitWindow(SCREENWIDTH, SCREENHEIGHT, "Game");
 	SetTargetFPS(60);
 
+	double startTime = GetTime();  // Save the start time
+
 	player.x = 796;
 	player.y = 215;
 	player.width = 25;
@@ -98,6 +100,12 @@ int main()
 
 			// Draw UI
 			DrawText(TextFormat("Level: %d.%d", level, course), 640, 30, 30, BLACK);
+
+			// In your game loop:
+			double currentTime = GetTime();  // Get the current time
+			double elapsedTime = currentTime - startTime;  // Calculate the elapsed time
+
+			DrawText(TextFormat("Time: %.1f", elapsedTime), 300, 30, 30, BLACK);
 			
 
 		EndDrawing();

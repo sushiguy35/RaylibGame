@@ -2,7 +2,7 @@
 
 Enimie enimies[MAX_ENIMIES];
 
-void CreateEnimie(int index, int StartX, int StartY) {
+void CreateEnimie(int index, int StartX, int StartY, int speed) {
     Enimie* enim = &enimies[index];
 
     if (enim->direction == 0) { // direction is 0, so this enemy has not been initialized yet
@@ -11,7 +11,7 @@ void CreateEnimie(int index, int StartX, int StartY) {
         enim->direction = 1; // Start moving down
     }
 
-    enim->y += enim->direction * 10;
+    enim->y += enim->direction * speed;
     if (enim->y >= 400) {
         enim->direction = -1; // Start moving up
     } else if (enim->y <= 25) {
