@@ -3,6 +3,8 @@
         "raylib.h": "c",
         "player.h": "c",
         "shooting.h": "c",
+        "enemie.c": "c",
+        "stdio.h": "c",
         "enemie.h": "c"
     }
 }
