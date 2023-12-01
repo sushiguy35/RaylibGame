@@ -3,7 +3,6 @@
 #include "headers/player.h"
 #include "headers/levels.h"
 #include "headers/shooting.h"
-#include "headers/enemie.h"
 
 
 #define SCREENHEIGHT 450
@@ -26,12 +25,7 @@ int main()
 	player.rec.width = 25;
 	player.rec.height = 35;
 
-	
-	
-	// Draw first level on startup
-	DrawLevelOne(SCREENHEIGHT, player.rec);
-
-	while(!WindowShouldClose())
+	while(!WindowShouldClose() && run == true)
 	{
 		// Move Player
 		if (IsKeyDown(KEY_RIGHT))
@@ -70,10 +64,14 @@ int main()
 			} else if (level == 1)
 			{
 				DrawLevelOne();
+				
 			}
 			
+
+			Texture2D playerIdle = LoadTexture("./assets/player/idle.png");
+
 			// Draw Player
-			DrawRectangle(player.x, player.y, player.width, player.height, RED);
+			DrawTexture(playerIdle, player.x, player.y, WHITE);
 
 			
 

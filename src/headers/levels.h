@@ -1,6 +1,7 @@
 #include "raylib.h"
 #include <stdio.h>
 #include "../player.c"
+#include "enemie.h"
 
 void DrawLevelZero(int screenheight)
 {
@@ -66,6 +67,19 @@ void DrawLevelOne()
 	// bottom wall
 	DrawRectangle(0, 425, 800, 25, GREEN);
 
+	Position enimPos = CreateEnimie(200, 300);
+
+
+	// PLAYER DEATH
+	Rectangle playerRec = {player.x, player.y, player.width, player.height};
+	Rectangle enimRec = {enimPos.x, enimPos.y, 25, 25}; // Assuming the enemy is 25x25 pixels
+
+		// PLAYER DEATH
+	if (CheckCollisionRecs(playerRec, enimRec))
+	{	
+    	died();
+		return;
+	}
 
 
 	// Collsisions
