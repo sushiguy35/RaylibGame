@@ -1,12 +1,20 @@
-#include "raylib.h"
-
 #ifndef PLAYER_H
 #define PLAYER_H
-typedef struct PLAYER {
-    int x, y, width, height;
+
+#include "raylib.h"
+
+typedef struct Player {
     Rectangle rec;
+    int x;
+    int y;
+    int width;
+    int height;
 } Player;
 
 extern Player player;
+extern bool run;
 
-#endif
+void died();
+void resetPlayer();
+
+#endif // PLAYER_H

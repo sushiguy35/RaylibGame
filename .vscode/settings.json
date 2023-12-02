@@ -5,6 +5,15 @@
         "shooting.h": "c",
         "enemie.c": "c",
         "stdio.h": "c",
-        "enemie.h": "c"
-    }
+        "enemie.h": "c",
+        "menu.h": "c",
+        "chrono": "c"
+    },
+    "makefile.launchConfigurations": [
+        {
+            "cwd": "/home/sushiguy/dev/RaylibGame",
+            "binaryPath": "/home/sushiguy/dev/RaylibGame/main.exe",
+            "binaryArgs": []
+        }
+    ]
 }
