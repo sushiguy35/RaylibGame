@@ -1,5 +1,5 @@
 // neccessary includes
-#include "headers/player.h"
+#include "./headers/player.h"
 #include <stdlib.h>
 #include "raylib.h"
 #include "headers/menu.h"
@@ -16,4 +16,3 @@ void died()
     // return to main menu when the player died
     gameState = GAME_MENU;
 }   
-

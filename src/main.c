@@ -29,6 +29,9 @@ void resetPlayer()
     player.rec.width = 25;
     player.rec.height = 35;
 
+	level = 1; // Reset the level
+	course = 0; // Reset the course
+
 	startTime = GetTime();  // Save the start time
 }
 
