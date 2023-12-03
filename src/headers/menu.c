@@ -14,7 +14,8 @@
 GameState gameState = GAME_RUNNING;
 
 // Define the volume variable
-float volume = 0.5f; // Initialize volume to 50%
+float musicVolume = 0.5f; // Initialize volume to 50%
+float *musicTempVolume; // Define the temp volume variable
 
 // Define the DrawButton function which is made to make buttons
 bool DrawButton(int x, int y, int width, int height, char* text)
@@ -48,6 +49,12 @@ bool DrawButton(int x, int y, int width, int height, char* text)
     return false;
 }
 
+void DrawDeathScreen()
+{
+    // Draw background and title
+    DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), Fade(BLACK, 0.5f));
+    DrawText("YOU DIED", GetScreenWidth() / 2 - MeasureText("YOU DIED", 40) / 2, 50, 40, GRAY);
+}
 
 // The setting menu function
 void DrawSettingsMenu()
@@ -57,21 +64,22 @@ void DrawSettingsMenu()
     DrawText("Settings", GetScreenWidth() / 2 - MeasureText("Settings", 40) / 2, 50, 40, GRAY);
 
     // define the tempvolume pointer which is necessary for the GuiSliderBar function
-    float *tempvolume = &volume;
+    
+    musicTempVolume = &musicVolume;
 
     // Draw the volume settings
     DrawText("Volume", GetScreenWidth() / 2 - MeasureText("Volume", 20) / 2, 150, 25, GRAY);
 
     // Define the text which is used for displaying the volume
-    char volumeText[32];
-    sprintf(volumeText, "%d%%", (int)(*tempvolume * 100));
+    char musicLeftText[32];
+    sprintf(musicLeftText, "%d%%", (int)(*musicTempVolume * 100));
 
     // Change the font size to 17 for the slider
     int defaultSize = GuiGetStyle(DEFAULT, TEXT_SIZE);
     GuiSetStyle(DEFAULT, TEXT_SIZE, 17); 
 
     // Draw the main audio slider
-    GuiSliderBar((Rectangle){ GetScreenWidth() / 2 - 170 / 2, 200, 170, 30 }, "Main", volumeText, tempvolume, 0.0f, 1.0f);
+    GuiSliderBar((Rectangle){ GetScreenWidth() / 2 - 170 / 2, 200, 170, 30 }, "Music", musicLeftText, musicTempVolume, 0.0f, 1.0f);
 
     GuiSetStyle(DEFAULT, TEXT_SIZE, defaultSize); // Reset the font size to the default size
 

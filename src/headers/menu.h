@@ -11,7 +11,8 @@ typedef enum GameState {
     GAME_MENU,
     GAME_EXIT,
     GAME_SETTINGS,
-    GAME_MENU_ENTER
+    GAME_MENU_ENTER,
+    PLAYER_DEAD
 } GameState;
 
 // Define the gamestate object
@@ -21,5 +22,6 @@ extern GameState gameState;
 void DrawPauseMenu();
 void DrawMainManu();
 void DrawSettingsMenu();
+void DrawDeathScreen();
 
 #endif

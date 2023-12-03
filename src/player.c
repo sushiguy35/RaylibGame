@@ -14,5 +14,5 @@ bool run = true;
 void died()
 {
     // return to main menu when the player died
-    gameState = GAME_MENU;
+    gameState = PLAYER_DEAD;
 }   
