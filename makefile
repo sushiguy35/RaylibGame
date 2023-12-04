@@ -4,3 +4,6 @@ compile:
 	
 run:
 	./main.exe
+
+clean:
+	rm -rf main.exe

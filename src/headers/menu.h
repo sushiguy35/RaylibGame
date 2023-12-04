@@ -1,4 +1,4 @@
-// Purpose: Header file for menu.c
+// Purpose: Header file for menu.cpp
 #ifndef MENU_H
 #define MENU_H
 
@@ -18,7 +18,7 @@ typedef enum GameState {
 // Define the gamestate object
 extern GameState gameState;
 
-// allocate memory for the menu functions in menu.c
+// allocate memory for the menu functions in menu.cpp
 void DrawPauseMenu();
 void DrawMainManu();
 void DrawSettingsMenu();

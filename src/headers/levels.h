@@ -120,9 +120,9 @@ void DrawLevelTwo()
 {
 	DrawTemplate(); // Draw the template for the level
 	
-	CreateEnimie(1, 100, 100, 12); // Draw the first enemy
-	CreateEnimie(2, 200, 200, 13); // Draw the second enemy
-	CreateEnimie(3, 300, 300, 14); // Draw the Third enemy
+	CreateEnimie(1, 100, 100, 10); // Draw the first enemy
+	CreateEnimie(2, 200, 200, 10); // Draw the second enemy
+	CreateEnimie(3, 300, 300, 10); // Draw the Third enemy
 
 	
 
@@ -145,8 +145,8 @@ void DrawLevelThree()
 {
 	DrawTemplate(); // Draw the template for the level
 	
-	CreateEnimie(0, 300, 100, 40); // Draw the first enemy
-	CreateEnimie(1, 500, 300, 40); // Draw the second enemy
+	CreateEnimie(0, 300, 100, 14); // Draw the first enemy
+	CreateEnimie(1, 500, 300, 14); // Draw the second enemy
 
 	// PLAYER DEATH
 	Rectangle playerRec = {player.x, player.y, player.width, player.height}; // Define the player rectangle variable

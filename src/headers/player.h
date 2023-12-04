@@ -9,6 +9,7 @@ typedef struct Player {
     int y;
     int width;
     int height;
+    int speed;
 } Player;
 
 extern Player player;

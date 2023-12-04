@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include "player.c"
 #include "headers/levels.h"
-#include "headers/menu.c"
+#include "headers/menu.cpp"
 
 // define the screen height and width
 #define SCREENHEIGHT 450
@@ -27,6 +27,7 @@ void resetPlayer()
     player.y = 215;
     player.width = 25;
     player.height = 25;
+	player.speed = 2;
     // Define the player rectangle
     player.rec.x = 100;
     player.rec.y = 225;
@@ -49,7 +50,10 @@ int main()
 
 	InitAudioDevice(); // Initialize audio device
 
-    Sound music = LoadSound("assets/music.wav");
+	Music music = LoadMusicStream("assets/music.wav");
+
+	// Play the music
+	PlayMusicStream(music);
 
 	if (music.stream.buffer == NULL) 
 	{
@@ -65,10 +69,6 @@ int main()
 	// Initialize the game to start in the menu
 	gameState = GAME_MENU_ENTER;
 
-	
-
-	PlaySound(music);
-
 	// Main game loop
 	while(!WindowShouldClose() && run == true)
 	{
@@ -76,13 +76,14 @@ int main()
 		double currentTime = GetTime();  // Get the current time
 		double elapsedTime = currentTime - startTime;  // Calculate the elapsed time
 
+		UpdateMusicStream(music); // Update the music stream
+
 		if (gameState != PLAYER_DEAD)
 		{
-			SetSoundPitch(music, 2.0f);
-			SetSoundVolume(music, musicVolume * 3);
+			SetMusicVolume(music, musicVolume * 3);
 		} else 
 		{
-			SetSoundVolume(music, 0);
+			SetMusicVolume(music, 0);
 		}
 
 		// Check if the escape key is pressed
@@ -134,19 +135,30 @@ int main()
 		// Move Player
 		if (IsKeyDown(KEY_RIGHT)) // Check if the right key is pressed
 		{
-			player.x += 2; // Move the player to the right
+			player.x += player.speed; // Move the player to the right
 		} 
 		if (IsKeyDown(KEY_LEFT)) // Check if the left key is pressed
 		{
-			player.x -= 2; // Move the player to the left
+			player.x -= player.speed; // Move the player to the left
 		}
 		if (IsKeyDown(KEY_UP)) // Check if the up key is pressed
 		{
-			player.y -= 2; // Move the player up
+			player.y -= player.speed; // Move the player up
 		}
 		if (IsKeyDown(KEY_DOWN)) // Check if the down key is pressed
 		{
-			player.y += 2; // Move the player down
+			player.y += player.speed; // Move the player down
+		}
+		if (IsKeyPressed(KEY_R)) // Check if the r key is pressed
+		{
+			resetPlayer(); // Reset the player
+		}
+		if (IsKeyDown(KEY_LEFT_SHIFT)) // Check if the left shift key is pressed
+		{
+			player.speed = 6; // Set the player speed to 4
+		} else 
+		{
+			player.speed = 3; // Set the player speed to 2
 		}
 		
 		// Start Drawing
@@ -214,7 +226,7 @@ int main()
     	gameState = GAME_EXIT; // Change the game state to exit
 	}
 
-	UnloadSound(music);
+	UnloadMusicStream(music);
     CloseAudioDevice(); // Close audio device
 
 	CloseWindow(); // Close the window

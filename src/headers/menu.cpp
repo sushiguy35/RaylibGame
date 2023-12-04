@@ -54,6 +54,20 @@ void DrawDeathScreen()
     // Draw background and title
     DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), Fade(BLACK, 0.5f));
     DrawText("YOU DIED", GetScreenWidth() / 2 - MeasureText("YOU DIED", 40) / 2, 50, 40, GRAY);
+
+    if (DrawButton(GetScreenWidth() / 2 - 50, 150, 100, 50, "Retry"))
+    {
+        gameState = GAME_RUNNING;
+        resetPlayer();
+    }
+    if (DrawButton(GetScreenWidth() / 2 - 50, 250, 100, 50, "Menu"))
+    {
+        gameState = GAME_MENU;
+    }
+    if (DrawButton(GetScreenWidth() / 2 - 50, 350, 100, 50, "Exit"))
+    {
+        CloseWindow();
+    }
 }
 
 // The setting menu function
