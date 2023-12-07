@@ -9,7 +9,7 @@
 #define SCREENHEIGHT 450
 #define SCREENWIDTH 800
 
-int level = 1;	// Define the level
+int level = 0;	// Define the level
 int course = 0; // Define the course
 
 double startTime;  // Save the start time
@@ -28,6 +28,7 @@ void resetPlayer()
     player.width = 25;
     player.height = 25;
 	player.speed = 2;
+    player.lives = 3;
     // Define the player rectangle
     player.rec.x = 100;
     player.rec.y = 225;
@@ -35,7 +36,7 @@ void resetPlayer()
     player.rec.height = 35;
 
 	level = 1; // Reset the level
-	course = 0; // Reset the course
+	course = 5; // Reset the course
 
 	startTime = GetTime();  // Save the start time
 }
@@ -203,7 +204,27 @@ int main()
 					level = 1; // Reset the level
 					course = 4; // Move to the next course
 				}	
-			}
+			} else if (course == 4 && level == 1) // If the course is 3 and the level is 1
+			{
+				DrawLevelFour(); // Draw the fourth level
+
+				if (player.x >= 800) // If the player is at the end of the level
+				{
+					player.x = 0; // Reset the player x position
+					level = 1; // Reset the level
+					course = 5; // Move to the next course
+				}	
+			} else if (course == 5 && level == 1) // If the course is 3 and the level is 1
+			{
+				DrawLevelFive(); // Draw the fourth level
+
+				if (player.x >= 800) // If the player is at the end of the level
+				{
+					player.x = 0; // Reset the player x position
+					level = 1; // Reset the level
+					course = 6; // Move to the next course
+				}	
+			} 
 			
 			// Draw Player
 			DrawRectangle(player.x, player.y, player.width, player.height, BLUE);
@@ -211,7 +232,9 @@ int main()
 			// Draw UI
 			DrawText(TextFormat("Level: %d.%d", level, course), 640, 30, 30, BLACK);
 
-			DrawText(TextFormat("Time: %.1f", elapsedTime), 300, 30, 30, BLACK); // Draw the timer
+			DrawText(TextFormat("Time: %.1f", elapsedTime), SCREENWIDTH / 2 - MeasureText("lives: §", 30), 30, 30, BLACK); // Draw the timer
+
+            DrawText(TextFormat("Lives: %d", player.lives), 35    , 30, 30, BLACK);
 
 		} // End of game loop
 		else if (gameState == GAME_PAUSED) // If the game is paused

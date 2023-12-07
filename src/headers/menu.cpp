@@ -7,7 +7,6 @@
 // all the includes
 #include "menu.h"
 #include "raylib.h"
-#include "raygui.h"
 #include "player.h"
 
 // Define the game state
@@ -89,13 +88,13 @@ void DrawSettingsMenu()
     sprintf(musicLeftText, "%d%%", (int)(*musicTempVolume * 100));
 
     // Change the font size to 17 for the slider
-    int defaultSize = GuiGetStyle(DEFAULT, TEXT_SIZE);
-    GuiSetStyle(DEFAULT, TEXT_SIZE, 17); 
+    //int defaultSize = GuiGetStyle(DEFAULT, TEXT_SIZE);
+    //GuiSetStyle(DEFAULT, TEXT_SIZE, 17); 
 
     // Draw the main audio slider
-    GuiSliderBar((Rectangle){ GetScreenWidth() / 2 - 170 / 2, 200, 170, 30 }, "Music", musicLeftText, musicTempVolume, 0.0f, 1.0f);
+    //GuiSliderBar((Rectangle){ GetScreenWidth() / 2 - 170 / 2, 200, 170, 30 }, "Music", musicLeftText, musicTempVolume, 0.0f, 1.0f);
 
-    GuiSetStyle(DEFAULT, TEXT_SIZE, defaultSize); // Reset the font size to the default size
+    //GuiSetStyle(DEFAULT, TEXT_SIZE, defaultSize); // Reset the font size to the default size
 
     // Check if the ESC key is pressed
     if (IsKeyPressed(KEY_ESCAPE)) {
