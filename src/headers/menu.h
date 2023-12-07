@@ -12,7 +12,8 @@ typedef enum GameState {
     GAME_EXIT,
     GAME_SETTINGS,
     GAME_MENU_ENTER,
-    PLAYER_DEAD
+    PLAYER_DEAD,
+    GAME_BOSS
 } GameState;
 
 // Define the gamestate object

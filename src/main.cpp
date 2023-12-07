@@ -23,7 +23,7 @@ float tempMusicVolume = 0.5f; // Define the music volume
 void resetPlayer()
 {
     // reset the player to the start position
-    player.x = 100;
+    player.x = 0;
     player.y = 215;
     player.width = 25;
     player.height = 25;
@@ -52,9 +52,10 @@ int main()
 	InitAudioDevice(); // Initialize audio device
 
 	Music music = LoadMusicStream("assets/music.wav");
+	Music BossMusic = LoadMusicStream("assets/boss.wav");
 
-	// Play the music
-	PlayMusicStream(music);
+
+	
 
 	if (music.stream.buffer == NULL) 
 	{
@@ -73,24 +74,56 @@ int main()
 	// Main game loop
 	while(!WindowShouldClose() && run == true)
 	{
+		if (gameState == GAME_RUNNING) // If the game is running
+		{
+			PlayMusicStream(music); // Play the music
+		} 
+		else if (gameState == GAME_PAUSED) // If the game is paused
+		{
+			StopMusicStream(music); // Stop the music
+		} else if (gameState == PLAYER_DEAD) // If the player is dead
+		{
+			StopMusicStream(music); // Stop the music
+		} else if (gameState == GAME_BOSS) // If the player is dead
+		{
+			PlayMusicStream(BossMusic); // Play the music
+			StopMusicStream(music); // Stop the music
+		} else 
+		{
+			PlayMusicStream(music); // Play the music
+		}
+
 		// Set Variables for the ingame timer
 		double currentTime = GetTime();  // Get the current time
 		double elapsedTime = currentTime - startTime;  // Calculate the elapsed time
 
-		UpdateMusicStream(music); // Update the music stream
+		if (gameState == GAME_BOSS) // If the player is in boss level
+    {
+        PlayMusicStream(BossMusic); // Play the boss music
+        StopMusicStream(music); // Stop the regular music
+        UpdateMusicStream(BossMusic); // Update the boss music stream
+    } 
+    else 
+    {
+        UpdateMusicStream(music); // Update the regular music stream
+        if (IsMusicStreamPlaying(BossMusic)) // If the boss music is playing
+        {
+            StopMusicStream(BossMusic); // Stop the boss music
+        }
+    }
 
-		if (gameState != PLAYER_DEAD)
+		if (gameState != PLAYER_DEAD || gameState != GAME_BOSS) // If the player is not dead
 		{
-			SetMusicVolume(music, musicVolume * 3);
-		} else 
+			SetMusicVolume(music, tempMusicVolume); // Set the music volume
+		} else if (gameState == GAME_BOSS) // If the player is not dead
 		{
-			SetMusicVolume(music, 0);
+			SetMusicVolume(BossMusic, tempMusicVolume); // Set the music volume
 		}
 
 		// Check if the escape key is pressed
 		if (IsKeyPressed(KEY_ESCAPE)) 
 		{
-        	if (gameState == GAME_RUNNING)  // If the game is running
+        	if (gameState == GAME_RUNNING || gameState == GAME_BOSS)  // If the game is running
 			{
            		gameState = GAME_PAUSED; // Pause the game
 
@@ -131,7 +164,7 @@ int main()
 			DrawDeathScreen(); // Draw the settings menu
 		}
 
-		if (gameState == GAME_RUNNING) // If the game is running
+		if (gameState == GAME_RUNNING || gameState == GAME_BOSS) // If the game is running
 		{ // Draw all the stuff for the game
 		// Move Player
 		if (IsKeyDown(KEY_RIGHT)) // Check if the right key is pressed
@@ -217,6 +250,7 @@ int main()
 			} else if (course == 5 && level == 1) // If the course is 3 and the level is 1
 			{
 				DrawLevelFive(); // Draw the fourth level
+				gameState = GAME_BOSS;
 
 				if (player.x >= 800) // If the player is at the end of the level
 				{
@@ -225,7 +259,7 @@ int main()
 					course = 6; // Move to the next course
 				}	
 			} 
-			
+
 			// Draw Player
 			DrawRectangle(player.x, player.y, player.width, player.height, BLUE);
 
@@ -250,6 +284,7 @@ int main()
 	}
 
 	UnloadMusicStream(music);
+	UnloadMusicStream(BossMusic);	
     CloseAudioDevice(); // Close audio device
 
 	CloseWindow(); // Close the window

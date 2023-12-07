@@ -110,7 +110,7 @@ void DrawMainManu()
     // Draw the background and the title
     DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), Fade(BLUE, 0.5f));
     DrawText("RaylibGame", GetScreenWidth() / 2 - MeasureText("RaylibGame", 40) / 2, GetScreenHeight() / 2 - 200, 40, BLACK);
-    
+    DrawFPS(10, 10); // Draw the fps counter
     // Draw the buttons and check if they are pressed and then change the game state accordingly
     if (DrawButton(GetScreenWidth() / 2 - 50, 150, 100, 50, "Play"))
     {
